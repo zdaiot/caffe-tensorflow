@@ -8,3 +8,7 @@
 # Python cache
 *.pyc
 
+.*
+
+MNIST_data/
+bvlc_alexnet
