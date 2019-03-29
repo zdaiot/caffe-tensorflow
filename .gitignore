@@ -12,3 +12,5 @@
 
 MNIST_data/
 bvlc_alexnet
+alexnet_cvgj_iter_320000.caffemodel
+zdaiot.npy

@@ -1,0 +1,25 @@
+from kaffe.tensorflow import Network
+
+class AlexNet(Network):
+    def setup(self):
+        (self.feed('data')
+             .batch_normalization(name='data_bn')
+             .conv(11, 11, 96, 4, 4, relu=False, padding='VALID', name='conv1')
+             .batch_normalization(relu=True, name='conv1_bn')
+             .max_pool(3, 3, 2, 2, padding='VALID', name='pool1')
+             .conv(5, 5, 256, 1, 1, group=2, relu=False, name='conv2')
+             .batch_normalization(relu=True, name='conv2_bn')
+             .max_pool(3, 3, 2, 2, padding='VALID', name='pool2')
+             .conv(3, 3, 384, 1, 1, relu=False, name='conv3')
+             .batch_normalization(relu=True, name='conv3_bn')
+             .conv(3, 3, 384, 1, 1, group=2, relu=False, name='conv4')
+             .batch_normalization(relu=True, name='conv4_bn')
+             .conv(3, 3, 256, 1, 1, group=2, relu=False, name='conv5')
+             .batch_normalization(relu=True, name='conv5_bn')
+             .max_pool(3, 3, 2, 2, padding='VALID', name='pool5')
+             .fc(4096, relu=False, name='fc6')
+             .batch_normalization(relu=True, name='fc6_bn')
+             .fc(4096, relu=False, name='fc7')
+             .batch_normalization(relu=True, name='fc7_bn')
+             .fc(1000, relu=False, name='fc8')
+             .softmax(name='softmax'))
